@@ -10,24 +10,24 @@
 				<hr>
 				<p class="lead"><strong>{{ $game->heim}}</strong> gegen <strong>{{ $game->gast }}</strong></p>
 			</center>
-			{{ Form::open() }}
-			<div class="form-group">
-				{{ Form::label('heim', ($game->heim).':') }}
-				{{ Form::text('heim', null , ['class'=>'form-control']) }}
-			</div>
+			<form method="POST", action="{{ route('bet.store') }}">
+				{{ csrf_field() }}
+				{{ Form::hidden('gameID', $game->id) }}
+				<div class="form-group">
+					<label for="heim">{{ $game->heim }}</label>
+					<input name="heim"type="text" class="form-control" placeholder="Tore {{ $game->heim }}">
+				</div>
+				<div class="form-group">
+					<label for="gast">{{ $game->gast }}</label>
+					<input name="gast"type="text" class="form-control" placeholder="Tore {{ $game->gast }}">
+				</div>
+				<div class="form-group">
+					<label for="credits">Credits</label>
+					<input name="credits"type="text" class="form-control" placeholder="Max: {{ Auth::user()->Kontostand }}">
+				</div>
 
-			<div class="form-group">
-				{{ Form::label('gast', ($game->gast).':') }}
-				{{ Form::text('gast', null , ['class'=>'form-control']) }}
-			</div>
-			<div class="form-group">
-				{{ Form::label('credits', 'Credits: ') }}
-				{{ Form::text('credits', null , ['class'=>'form-control']) }}
-			</div>
-			
-			{{ Form::submit('Wette platzieren', ['class'=>'btn btn-primary btn-block formBtnSpacing']) }}
-			
-			{{ Form::close() }}
+				<input type="submit" class="btn btn-primary btn-block formBtnSpacing" value="Wette plazieren">
+			</form>
 		</div>
 	</div>
 @endsection

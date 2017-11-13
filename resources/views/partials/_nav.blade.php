@@ -28,7 +28,7 @@
       </ul>
       @if (Auth::check())
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">Kontostand: {{ Auth::user()->Kontostand }} Cr</p></li>
+        <li><p class="navbar-text">Kontostand: {{ Auth::user()->Kontostand }} Cr.</p></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hello {{ Auth::check()? Auth::user()->Vorname : User }} <span class="caret"></span></a>
           <ul class="dropdown-menu">

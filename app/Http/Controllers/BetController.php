@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Bet;
 use App\Game;
 use Session;
+use Auth;
 
 class BetController extends Controller
 {
@@ -56,7 +57,26 @@ class BetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate Data
+        $this->validate($request,[
+            'heim' => 'required|integer|min:0',
+            'gast' => 'required|integer|min:0',
+            'credits'=>'required|integer|min:|max:Auth::user()->Kontostand',
+        ]);
+        $bet = New Bet;
+
+        $bet->userId = Auth::user()->id;
+        $bet->gameID = $request->gameID;
+        $bet->Betrag = $request->credits;
+        $bet->HP = $request->heim;
+        $bet->GP = $request->gast;
+
+        $bet->save();
+
+        $Session::flash('success', 'Wette erfolgreich plaziert');
+
+        return redirect()->route('bet.index');
+
     }
 
     /**
