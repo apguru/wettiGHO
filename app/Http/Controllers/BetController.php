@@ -9,6 +9,7 @@ use App\Bet;
 use App\Game;
 use Session;
 use Auth;
+use DB;
 
 class BetController extends Controller
 {
@@ -32,9 +33,15 @@ class BetController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $bets = Bet::where('userId', $id);
-        return view('bet.index')->withBets($bets);
+        $id = Auth::user()->id;
+        $bets = DB::table('bets')->where('userId', $id)->get();
+        $gameIDs = DB::table('bets')->where('userId', $id)->pluck('gameID');
+        $games = [];
+        foreach ($gameIDs as $id) {
+            $game = Game::find($id);
+            $games[$id]=$game;
+        }
+        return view('bet.index')->withBets($bets)->withGames($games);
     }
 
     /**
@@ -57,6 +64,13 @@ class BetController extends Controller
      */
     public function store(Request $request)
     {
+        if ((DB::table('bets')->where([
+                    ['userId', Auth::user()->id],
+                    ['gameID', $request->gameID]
+                ])->count()) != 0) {
+            Session::flash('error','Du kannst nicht 2 mal aufs selbe spiel wetten');
+            return redirect()->route('bet.index');
+        }
         //Validate Data
         $this->validate($request,[
             'heim' => 'required|integer|min:0',
@@ -73,7 +87,7 @@ class BetController extends Controller
 
         $bet->save();
 
-        $Session::flash('success', 'Wette erfolgreich plaziert');
+        Session::flash('success', 'Wette erfolgreich plaziert');
 
         return redirect()->route('bet.index');
 
