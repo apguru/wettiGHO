@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}">Home <span class="sr-only">(current)</span></a></li>
+        <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
@@ -24,25 +24,25 @@
           </ul>
         </li>
         @endif
-        <li class='{{ Request::is("contact") ? "active" : "" }}'><a href="{{ route('pages.contact') }}">Contact</a></li>
+        <li class='{{ Request::is("contact") ? "active" : "" }}'><a href="{{ route('pages.contact') }}"><i class="fa fa-address-card-o fa-fw" aria-hidden="true"></i> Contact</a></li>
       </ul>
       @if (Auth::check())
       <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text">Kontostand: {{ Auth::user()->Kontostand }} Cr.</p></li>
+        <li><p class="navbar-text">Kontostand: {{ Auth::user()->Kontostand }} <i class="fa fa-money" aria-hidden="true"></i></p></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hello {{ Auth::check()? Auth::user()->Vorname : User }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('logout') }}">Logout</a></li>
+            <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
           </ul>
         </li>
       </ul>
       @else
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>User<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
+            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
           </ul>
         </li>
       </ul>

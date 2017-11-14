@@ -23,13 +23,13 @@
 				</div>
 				<div class="form-group">
 					<label for="spielTag" class="col-md-2 control-label">Spieltag</label>
-          <div name='spielTag' class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="spielTag">
-          	<input name="spielTag" class="form-control" size="16" type="text" value="" readonly>
-            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+         			<div name='spielTag' class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii" data-link-field="spielTag">
+          				<input name="spielTag" class="form-control" size="16" type="text" value="" readonly>
+            			<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-          </div>
+          			</div>
 					<input type="hidden" name='spielTag' id="spielTag" value="" /><br/>
-        </div>
+        		</div>
         <button type="submit" class="btn btn-success">Erstellen</button>
 			</form>	
 		</div>
@@ -38,15 +38,17 @@
 
 @section('scripts')
 {{ Html::script('js/bootstrap-datetimepicker.js') }}
+{{ Html::script('js/locales/bootstrap-datepicker.de.js') }}
 <script type="text/javascript">
 	$('.form_datetime').datetimepicker({
 		weekStart: 1,
-    todayBtn:  1,
 		autoclose: 1,
 		todayHighlight: 1,
 		startView: 2,
 		forceParse: 0,
-    showMeridian: 1
+		showMeridian: 1,
+		language: "de",
+		startDate: '+0d'
   });
 </script>
 @endsection
