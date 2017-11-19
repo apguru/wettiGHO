@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\ActivationService;
+use Session;
 
 class AuthController extends Controller
 {
@@ -32,6 +33,7 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
     protected $activationService;
+    protected $loginPath = 'auth/login';
     /**
      * Create a new authentication controller instance.
      *
@@ -96,6 +98,7 @@ class AuthController extends Controller
             'Nachname' => 'required',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'ageCheck' => 'required',
         ]);
     }
 

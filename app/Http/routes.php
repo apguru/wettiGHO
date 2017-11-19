@@ -42,4 +42,7 @@ Route::group(array('before' => 'auth'), function(){
     Route::get('/spiele', ['as' => 'spiele', 'uses'=>'GameController@getIndex']);
     Route::get('/spiele/create', 'GameController@create');
     Route::post('/spiele', ['as'=>'spiele.store', 'uses'=>'GameController@store']);
+
+    //Pages
+    Route::get('/user/data', ['as'=>'user.data', 'uses'=>'PagesController@getUserData'])->middleware('auth');
 });

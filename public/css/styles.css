@@ -15,6 +15,12 @@ body{
 	background-color: #161618;
 }
 
+.panelBody{
+	border-radius: 0px 0px 6px 6px;
+	border: 5px solid;
+	border-color: #ee2d2e #161618 #161618 #161618;
+}
+
 .navbar{
 	margin-bottom: 0px;
 	border-radius: 0px;
@@ -23,4 +29,10 @@ body{
 .container .jumbotron, .container-fluid .jumbotron .homeJumbotron{
 	border-radius: 0px;
 	display: block;
+	border: 5px solid #161618;
+	border-width: 0px 5px 5px 5px;
+}
+
+.panelTitle{
+	margin: 10px 0px 10px 0px;
 }

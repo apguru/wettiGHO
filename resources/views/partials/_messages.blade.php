@@ -12,17 +12,17 @@
   </div>
 @endif
 
-@if (Session::has('status'))
+@if (session('status'))
   <div class="alert alert-success alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    {{ Session::get('status') }}
+    {{ session('status') }}
   </div>
 @endif
 
-@if (Session::has('warning'))
+@if (session('warning'))
   <div class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    {{ Session::get('warning') }}
+    {{ session('warning') }}
   </div>
 @endif
 

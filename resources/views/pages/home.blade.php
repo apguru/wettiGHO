@@ -16,7 +16,7 @@
       <div class="well panelHead">
         <h1>Was ist das hier?</h1>
       </div>
-      <div class="well">
+      <div class="well panelBody">
         <br>
         <p class="lead">Das Projekt 'WettiGHO' ist ein Programm, welches als Online-Wettbüro fungiert. Es basiert auf einem Punkte und Credit System, d.h. das man für unterschiedlich gut plazierte Wetten unterschiedlich viele Punkte erhält. Diese agieren als Multiplikator für die gesetzten Credits. Man setzt unentgeltliche Credits auf eine Tordifferenz, wobei für den richtigen Sieger 2, die richtige Differenz 3, und das richtige Ergebnis 5 Pkt vergeben werden. Da es sich hierbei um eine ertragsfreie Wettplattform handelt, werden lediglich Credits ausgezahlt, die in Bestenlisten miteinander verglichen werden.</p>
         <hr>

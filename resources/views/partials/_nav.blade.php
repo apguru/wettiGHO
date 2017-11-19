@@ -32,6 +32,8 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hello {{ Auth::check()? Auth::user()->Vorname : User }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
+            <li><a href="{{ route('user.data') }}">Benutzerdaten</a></li>
+            <li role="seperator" class="divider"></li>
             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
           </ul>
         </li>
