@@ -8,28 +8,30 @@
         <div class="col-md-6 col-md-offset-3">
         	<h1>Registrieren</h1>
         	<hr>
-        	{!! Form::open() !!}
+        	{!! Form::open(['data-parsley-validate'=>'']) !!}
         		{{ Form::label('bName', "Benutzername") }}
-        		{{ Form::text('bName', null, ['class'=>'form-control', 'placeholder'=>'Benutzername']) }}
+        		{{ Form::text('bName', null, ['class'=>'form-control', 'placeholder'=>'Benutzername', 'required'=>'']) }}
 
         		{{ Form::label('Vorname', "Vorname") }}
-        		{{ Form::text('Vorname', null, ['class'=>'form-control', 'placeholder'=>'Vorname']) }}
+        		{{ Form::text('Vorname', null, ['class'=>'form-control', 'placeholder'=>'Vorname', 'required'=>'']) }}
 
         		{{ Form::label('Nachname', "Nachname") }}
-        		{{ Form::text('Nachname', null, ['class'=>'form-control', 'placeholder'=>'Nachname']) }}
+        		{{ Form::text('Nachname', null, ['class'=>'form-control', 'placeholder'=>'Nachname', 'required'=>'']) }}
 
         		{{ Form::label('email', "Email") }}
-        		{{ Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Email']) }}
+        		{{ Form::email('email', null, ['class'=>'form-control', 'placeholder'=>'Email', 'required'=>'', 'data-parsley-type'=>"email"]) }}
 
         		{{ Form::label('password', "Passwort") }}
-        		{{ Form::password('password',['class'=>'form-control', 'placeholder'=>'Passwort']) }}
+        		{{ Form::password('password',['class'=>'form-control', 'placeholder'=>'Passwort', 'required'=>'']) }}
 
         		{{ Form::label('password_confirmation', "Passwort wiederholen") }}
-        		{{ Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Passwort wiederholen']) }}
+        		{{ Form::password('password_confirmation',['class'=>'form-control', 'placeholder'=>'Passwort wiederholen', 'required'=>'', 'data-parsley-equalto'=>'#password']) }}
         		
         		<br>
-        		{{ Form::checkbox('ageCheck', 'yes') }}
-        		{{ Form::label('ageCheck', "Ich bestätige, dass ich das 18 Lebensjahr vollendet habe") }}
+                <label for="ageCheck">
+        		{{ Form::checkbox('ageCheck', true, null, ['required'=>'']) }}
+        		Ich bestätige, dass ich das 18 Lebensjahr vollendet habe
+                </label>
         		
         		<br><br>
         		

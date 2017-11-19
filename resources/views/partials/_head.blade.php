@@ -12,5 +12,6 @@
     {{ Html::style('https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css') }}
     {{ Html::style('font-awesome/css/font-awesome.min.css') }}
     {{ Html::style('https://fonts.googleapis.com/css?family=Open+Sans') }}
+    {{ Html::style('css/parsley.css') }}
 
     @yield('stylesheets')

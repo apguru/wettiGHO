@@ -8,3 +8,9 @@ crossorigin="anonymous"></script>
   src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
   integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
+
+ <!--Parsley JS-->
+
+{{ Html::script('js/parsley/parsley.min.js') }}
+{{ Html::script('js/parsley/i18n/de.js') }}
+{{ Html::script('js/parsley/i18n/de.extra.js') }}
