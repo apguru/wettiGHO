@@ -7,9 +7,12 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AlterBetTable' => $baseDir . '/database/migrations/2017_11_13_195904_alter_bet_table.php',
+    'AlterBetsTable' => $baseDir . '/database/migrations/2017_11_19_141636_alter_bets_table.php',
+    'AlterUserTable' => $baseDir . '/database/migrations/2017_11_19_141621_alter_user_table.php',
     'CreateBetTable' => $baseDir . '/database/migrations/2017_11_06_090343_create_bet_table.php',
     'CreateGamesTable' => $baseDir . '/database/migrations/2017_11_06_091444_create_games_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateUserActivationTable' => $baseDir . '/database/migrations/2017_11_19_143920_create_user_activation_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'CreateWettenTable' => $baseDir . '/database/migrations/2017_10_16_091300_create_wetten_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',

@@ -268,9 +268,12 @@ class ComposerStaticInit77ed2aab4792dc1b2cb91573ac389fe4
 
     public static $classMap = array (
         'AlterBetTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_13_195904_alter_bet_table.php',
+        'AlterBetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_19_141636_alter_bets_table.php',
+        'AlterUserTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_19_141621_alter_user_table.php',
         'CreateBetTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_06_090343_create_bet_table.php',
         'CreateGamesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_06_091444_create_games_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateUserActivationTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_19_143920_create_user_activation_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateWettenTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_16_091300_create_wetten_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',

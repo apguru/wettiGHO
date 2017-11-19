@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Http\Request;
+use App\ActivationService;
 
 class AuthController extends Controller
 {
@@ -29,16 +31,56 @@ class AuthController extends Controller
      * @var string
      */
     protected $redirectTo = '/';
-
+    protected $activationService;
     /**
      * Create a new authentication controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ActivationService $activationService)
     {
+
         $this->middleware($this->guestMiddleware(), ['except' => 'getLogout']);
+        $this->activationService = $activationService;
     }
+
+    //Catch default register function and send activation email
+    public function register(Request $request)
+    {
+    $validator = $this->validator($request->all());
+
+    if ($validator->fails()) {
+        $this->throwValidationException(
+            $request, $validator
+        );
+    }
+
+    $user = $this->create($request->all());
+
+    $this->activationService->sendActivationMail($user);
+
+    return redirect('auth/login')->with('status', 'Wir haben dir einen Aktivierungscode geschickt. Bitte überprüfe deine Email.');
+    }
+
+    //Check if User is Authenticated
+    public function authenticated(Request $request, $user)
+    {
+    if (!$user->activated) {
+        $this->activationService->sendActivationMail($user);
+        auth()->logout();
+        return back()->with('warning', 'Du musst deinen Account bestätigen. Wir haben dir einen Aktivierungscode geschickt. Bitte überprüfe deine Email.');
+    }
+    return redirect()->intended($this->redirectPath());
+    } 
+
+    public function activateUser($token)
+    {
+    if ($user = $this->activationService->activateUser($token)) {
+        auth()->login($user);
+        return redirect($this->redirectPath());
+    }
+    abort(404);
+    }  
 
     /**
      * Get a validator for an incoming registration request.
