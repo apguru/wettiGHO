@@ -1,3 +1,26 @@
+body{
+	font-family: 'Open Sans', sans-serif;
+}
 .formBtnSpacing{
     margin-top: 17px;
+}
+
+.panelHead{
+	margin: 0;
+	border: 5px solid;
+	border-bottom-width: thick ; 
+	border-radius: 6px 6px 0px 0px;
+	border-color: #161618 #161618 #ee3d2e #161618;
+	color: white;
+	background-color: #161618;
+}
+
+.navbar{
+	margin-bottom: 0px;
+	border-radius: 0px;
+}
+
+.container .jumbotron, .container-fluid .jumbotron .homeJumbotron{
+	border-radius: 0px;
+	display: block;
 }

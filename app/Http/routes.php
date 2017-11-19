@@ -20,6 +20,11 @@ Route::group(['middleware' => ['web']], function () {
     //Registration Routes
     Route::get('auth/register', ['as' => 'register', 'uses'=>'Auth\AuthController@getRegister']);
 	Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+    //Password Reset Route
+    Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+    Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
+    Route::post('password/reset', 'Auth\PasswordController@reset');
     
     //Pages
     Route::get('/', ['as'=>'pages.welcome', 'uses'=>'PagesController@getIndex']);

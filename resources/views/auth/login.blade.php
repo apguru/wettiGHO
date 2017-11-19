@@ -16,6 +16,9 @@
       	{{ Form::password('password', ['class' => 'form-control', 'placeholder' => 'Passwort']) }}
       	
       	{{ Form::submit('Login', ['class' => 'btn btn-success btn-block formBtnSpacing']) }}
+
+        <h5><a href="{{ url('password/reset') }}">Passwort vergessen</h5>
+          
         {{ Form::close() }}
     </div>
   </div>
