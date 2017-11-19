@@ -36,3 +36,8 @@ body{
 .panelTitle{
 	margin: 10px 0px 10px 0px;
 }
+
+#navLogo{
+	margin-right: 10px;
+	display: block;
+}

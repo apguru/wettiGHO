@@ -121,7 +121,7 @@ class BetController extends Controller
         
         //Flash Success and Info 
         Session::flash('success', 'Wette erfolgreich plaziert');
-        Session::flash('info', 'Dir wurden '.$request->credits.' abgezogen!');
+        Session::flash('info', 'Dir wurden '.$request->credits.' Credits abgezogen!');
 
         //redirect to bet.index
         return redirect()->route('bet.index');

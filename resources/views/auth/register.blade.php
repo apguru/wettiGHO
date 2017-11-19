@@ -6,8 +6,11 @@
    
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-        	<h1>Registrieren</h1>
-        	<hr>
+            <br>
+            <div class="well panelHead">
+        	   <h1 class="text-center">Registrieren</h1>
+            </div>
+        	<div class="well panelBody">
         	{!! Form::open(['data-parsley-validate'=>'']) !!}
         		{{ Form::label('bName', "Benutzername") }}
         		{{ Form::text('bName', null, ['class'=>'form-control', 'placeholder'=>'Benutzername', 'required'=>'']) }}
@@ -38,6 +41,7 @@
         		{{ Form::submit('Registrieren', ['class' => 'btn btn-primary btn-block']) }}
 
         	{!! Form::close() !!}
+            </div>
         </div><!-- col-md-6 -->
     </div><!-- row -->
 @endsection

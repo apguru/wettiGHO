@@ -8,12 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">WettiGHO</a>
+      {{ Html::image('logo48.png', '', ['id'=>'navLogo']) }}
     </div> <!-- /.container -->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><a class="navbar-brand" href="/">WettiGHO</a></li>
+        <li></li>
         <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
           <li class="dropdown">
@@ -32,7 +34,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hello {{ Auth::check()? Auth::user()->Vorname : User }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('user.data') }}">Benutzerdaten</a></li>
+            <li><a href="{{ route('user.data') }}"> <i class="fa fa-id-card fa-fw" aria-hidden="true"></i> Benutzerdaten</a></li>
             <li role="seperator" class="divider"></li>
             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
           </ul>

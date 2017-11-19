@@ -13,6 +13,7 @@
 		          <th>Gast</th>
 		          <th>Heim Punkte</th>
 		          <th>Gast Punkte</th>
+		          <th>Spieltag</th>
 		          <th>Credits</th>
 		        </thead>
 		        <tbody>
@@ -23,6 +24,7 @@
 	                <th>{{ $games[$bet->gameID]->gast }}</th>
 	                <th>{{ $bet->HP }} </th>
 	                <th>{{ $bet->GP }} </th>
+	                <th>{{ date('D, j. M Y G:i', strtotime($games[$bet->gameID]->spielTag)) }}</th>
 	                <th>{{ $bet->Betrag }}</th>
 	              </tr>
 		          @endforeach

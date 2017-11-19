@@ -13,7 +13,7 @@ class AlterBetsTable extends Migration
     public function up()
     {
         Schema::table('bets', function ($table){
-            $table->boolean('ausgewertet')->after('GP');
+            $table->boolean('ausgewertet')->default(0)->after('GP');
         });
     }
 

@@ -6,11 +6,10 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<br>
-			<div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">Passwort zurücksetzen</h3>
-			  </div>
-			  <div class="panel-body">
+			<div class="well panelHead">
+			    <h1>Passwort zurücksetzen</h1>
+			</div>
+			<div class="well panelBody">
 			    {!! Form::open(['url' => 'password/reset', 'method' => "POST"]) !!}
 
 			    {{ Form::hidden('token', $token) }}
@@ -27,7 +26,6 @@
 				{{ Form::submit('Passwort zurücksetzen', ['class'=>'btn btn-primary formBtnSpacing']) }}
 
 				{!! Form::close() !!}
-			  </div>
 			</div>
 		</div>
 	</div>
