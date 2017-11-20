@@ -1,6 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+ 
+use Mail;
+use Session;
+use Illuminate\Http\Request;
+use App\Http\Requests;
 
 class PagesController extends Controller{
 
@@ -14,6 +19,31 @@ class PagesController extends Controller{
 	public function getContact(){
 		//return contact view
 		return view('pages.contact');
+	}
+	
+	public function postContact(Request $request){
+		//validate the Data
+		$this->validate($request, [
+          'email' => 'required|email',
+          'betreff' => 'required',
+          'nachricht'=>'required',
+        ]);
+        
+        $data = [
+        	'email' => $request->email,
+        	'betreff'=>$request->betreff,
+        	'nachricht'=>$request->nachricht
+        	];
+        	
+        Mail::send('emails.contact', $data, function($message) use ($data){
+        	$message->from($data['email']);
+        	$message->to('support@wettiGHO.de');
+        	$message->subject($data['betreff']);
+        });
+        
+        Session::flash('success', 'Nachricht erfolgreich übermittelt');
+        
+        return redirect()->url('/');
 	}
 
 	//user Data Page

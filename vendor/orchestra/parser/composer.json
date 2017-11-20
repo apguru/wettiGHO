@@ -1,0 +1,33 @@
+{
+    "name": "orchestra/parser",
+    "description": "XML Document Parser for Laravel and PHP",
+    "keywords": ["laravel", "orchestral", "orchestra-platform", "xml", "parser"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com",
+            "homepage": "https://github.com/crynobone"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orchestra\\Parser\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "laravie/parser": "~1.0",
+        "illuminate/container": "~5.2.0"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0|~5.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.3-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}

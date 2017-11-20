@@ -32,6 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     //Pages
     Route::get('/', ['as'=>'pages.welcome', 'uses'=>'PagesController@getIndex']);
     Route::get('/contact',['as'=>'pages.contact', 'uses'=>'PagesController@getContact']);
+    Route::post('contact', ['as'=>'contact.send', 'uses'=>'PagesController@postContact']);
 });
 
 Route::group(array('before' => 'auth'), function(){
