@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use XMLParser;
+use App\Game;
 
 class pullGames extends Command
 {
@@ -19,7 +19,7 @@ class pullGames extends Command
      *
      * @var string
      */
-    protected $description = 'Pulls all Games from openLigaDb';
+    protected $description = 'Pull all Games';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,23 @@ class pullGames extends Command
      */
     public function handle()
     {
+        $context  = stream_context_create(array('http' => array('header' => 'Accept: application/xml')));
+        $url = "https://www.openligadb.de/api/getmatchdata/bl1/2017";
+
+        $xml = file_get_contents($url, false, $context);
+        $games = simplexml_load_string($xml);
+
         
+
+        for ($i=0; $i < count($games) ; $i++) { 
+            $game = New Game;
+
+            $game->matchId = $games->Match[$i]->MatchID;
+            $game->heim = $games->Match[$i]->Team1->TeamName;
+            $game->gast = $games->Match[$i]->Team2->TeamName;
+            $game->spielTag = $games->Match[$i]->MatchDateTime;
+
+            $game->save();
+        }
     }
 }

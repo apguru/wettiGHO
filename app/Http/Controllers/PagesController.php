@@ -43,7 +43,7 @@ class PagesController extends Controller{
         
         Session::flash('success', 'Nachricht erfolgreich übermittelt');
         
-        return redirect()->url('/');
+        return redirect(route("pages.welcome"));
 	}
 
 	//user Data Page

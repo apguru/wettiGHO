@@ -148,6 +148,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Orchestra\Parser\XmlServiceProvider::class,
+        Nathanmac\Utilities\Parser\ParserServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -207,6 +209,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'XmlParser' => Orchestra\Parser\Xml\Facade::class,
+        'Parser' => Nathanmac\Utilities\Parser\Facades\Parser::class,
 
     ],
 

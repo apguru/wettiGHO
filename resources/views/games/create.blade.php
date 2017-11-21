@@ -22,6 +22,10 @@
 					<input type="text" name="gast" id="gast" class="form-control" placeholder="Gast">
 				</div>
 				<div class="form-group">
+					<label for="gast">MatchID</label>
+					<input type="text" name="matchId" id="matchId" class="form-control" placeholder="matchId">
+				</div>
+				<div class="form-group">
 					<label for="spielTag" class="col-md-2 control-label">Spieltag</label>
          			<div name='spielTag' class="input-group date form_datetime col-md-5" data-date-format="dd MM yyyy - HH:ii" data-link-field="spielTag">
           				<input name="spielTag" class="form-control" size="16" type="text" value="" readonly>

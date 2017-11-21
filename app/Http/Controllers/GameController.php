@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Game;
+use App\Bet;
 use App\Http\Controllers\BetController;
 use Session;
+use DB;
+use Auth;
+use Parser;
+use XmlParser;
 
 class GameController extends Controller
 {
@@ -18,7 +23,7 @@ class GameController extends Controller
     public function getIndex(){
         //Get all Games orderd by `spieltag`
     	$games = Game::orderBy('spielTag', 'asc')->get();
-        
+
         //return view game.index with all game & game data
     	return view('games.index')->withGames($games);
     }
@@ -30,8 +35,16 @@ class GameController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'matchId' => "required|Integer",
+            'heim' => 'required|String',
+            'gast' => 'required|String',
+            'spielTag' => 'required|date'
+        ]);
         //Create new Game & assign Data from Form
     	$game = New Game;
+        $game->matchId = $request->matchId;
     	$game->heim = $request->heim;
     	$game->gast = $request->gast;
     	$game->spielTag = $request->spielTag;
@@ -58,4 +71,5 @@ class GameController extends Controller
         //rediect to route: "bet.create"
     	return redirect()->route('bet.create');
     }
+
 }

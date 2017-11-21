@@ -14,6 +14,9 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+        Commands\updateGames::class,
+        Commands\evaluateBets::class,
+        Commands\pullGames::class,
     ];
 
     /**
@@ -26,5 +29,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->command('updateGames')
+        ->hourly()->fridays()->saturdays()->sundays()
+        ->timezone("Europe/Berlin");
     }
 }

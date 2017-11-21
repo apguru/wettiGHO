@@ -95,12 +95,15 @@ class BetController extends Controller
             'credits'=>'required|integer|min:|max:Auth::user()->Kontostand',
         ]);
         //Create New Bet
+        $game = Game::find($request->gameID);
+
         $bet = New Bet;
         
         //Retrieve Data From Form
         $bet->userId = Auth::user()->id;
         $bet->gameID = $request->gameID;
         $bet->Betrag = $request->credits;
+        $bet->spielTag = $game->spielTag;
         $bet->HP = $request->heim;
         $bet->GP = $request->gast;
         
