@@ -44,7 +44,8 @@ class updateGames extends Command
         //Remove not played Games
         $id = 0;
         foreach ($games as $game) {
-            if (strtotime('now') < strtotime($game->spielTag)) {
+            $time = strtotime($game->spielTag) + 86400;
+            if (strtotime('now') < $time) {
                 unset($games[$id]);
             }
             $id++;          
@@ -63,9 +64,12 @@ class updateGames extends Command
 
             $gameDB->hp = $toreHeim;
             $gameDB->gp = $toreGast;
+            $gameDB->done = true;
 
             $gameDB->save();
 
         }
+        $this->info("Games updated");
+        return;
     }
 }

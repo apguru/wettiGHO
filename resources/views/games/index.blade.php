@@ -17,17 +17,18 @@
         <tbody>
 
           @foreach($games as $game)
-            @if (strtotime('now') < strtotime($game->spielTag))          
-              <tr>
-                <th> {{ $game->heim }} </th>
-                <th> {{ $game->gast }}</th>
-                <th> {{ date('D, j. M Y G:i', strtotime($game->spielTag)) }} </th>
-                <th><a href='{{ route('bet.betCreate', $game) }}' class="btn btn-success">Wetten</a></th>
-              </tr>
-            @endif
+            <tr>
+              <th> {{ $game->heim }} </th>
+              <th> {{ $game->gast }}</th>
+              <th> {{ date('D, j. M Y G:i', strtotime($game->spielTag)) }} </th>
+              <th><a href='{{ route('bet.betCreate', $game) }}' class="btn btn-success">Wetten</a></th>
+            </tr>
           @endforeach
         </tbody>
       </table>
+      <div class="text-center">
+        {!! $games->links() !!}
+      </div>
       </div>
   </div>
 @endsection

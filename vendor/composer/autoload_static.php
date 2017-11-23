@@ -288,6 +288,7 @@ class ComposerStaticInit77ed2aab4792dc1b2cb91573ac389fe4
     );
 
     public static $classMap = array (
+        'AddDoneToGames' => __DIR__ . '/../..' . '/database/migrations/2017_11_23_192753_add_done_to_games.php',
         'AddMatchidToGames' => __DIR__ . '/../..' . '/database/migrations/2017_11_21_190329_add_matchid_to_games.php',
         'AddTimeToBetsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_21_182028_add_time_to_bets_table.php',
         'AlterBetTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_13_195904_alter_bet_table.php',
@@ -296,6 +297,7 @@ class ComposerStaticInit77ed2aab4792dc1b2cb91573ac389fe4
         'CreateBetTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_06_090343_create_bet_table.php',
         'CreateGamesTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_06_091444_create_games_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateStatsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_23_201708_create_stats_table.php',
         'CreateUserActivationsTable' => __DIR__ . '/../..' . '/database/migrations/2017_11_19_143920_create_user_activation_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'CreateWettenTable' => __DIR__ . '/../..' . '/database/migrations/2017_10_16_091300_create_wetten_table.php',

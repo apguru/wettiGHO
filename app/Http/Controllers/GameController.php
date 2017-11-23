@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Game;
 use App\Bet;
 use App\Http\Controllers\BetController;
+use Carbon\Carbon;
 use Session;
 use DB;
 use Auth;
@@ -22,7 +23,9 @@ class GameController extends Controller
     
     public function getIndex(){
         //Get all Games orderd by `spieltag`
-    	$games = Game::orderBy('spielTag', 'asc')->get();
+        $time = Carbon::now();
+        $games = Game::orderBy('spielTag','asc')->where('spielTag', '>', $time)->paginate(10);
+    	// $games = DB::table('games')->where('spielTag', '>', $time)->orderBy('spielTag','asc')->paginate(10);
 
         //return view game.index with all game & game data
     	return view('games.index')->withGames($games);

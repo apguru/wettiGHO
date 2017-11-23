@@ -30,8 +30,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('updateGames')
-        ->hourly()->fridays()->saturdays()->sundays()
-        ->timezone("Europe/Berlin");
+        // $schedule->command('updateGames')
+        // ->hourly()->fridays()->saturdays()->sundays()
+        // ->timezone("Europe/Berlin");
     }
 }
