@@ -15,10 +15,10 @@ class CreateStatsTable extends Migration
         Schema::create('stats', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userId');
-            $table->integer('Loose');
-            $table->integer('2Pkt');
-            $table->integer('3Pkt');
-            $table->integer('5Pkt');        
+            $table->integer('Loose')->default(0);
+            $table->integer('Pkt2')->default(0);
+            $table->integer('Pkt3')->default(0);
+            $table->integer('Pkt5')->default(0);        
             $table->timestamps();
         });
     }

@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\ActivationService;
 use Session;
+use App\Stat;
 
 class AuthController extends Controller
 {
@@ -110,12 +111,23 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        //Create user
+        $user = User::create([
             'bName' => $data['bName'],
             'Vorname' => $data['Vorname'],
             'Nachname' => $data['Nachname'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        //create stats entry
+        $stat = New Stat;
+
+        $stat->userId = $user->id;
+
+        $stat->save();
+
+        // Return $user to create
+        return $user;
     }
 }

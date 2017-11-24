@@ -43,7 +43,7 @@ class evaluateBets extends Command
     public function handle()
     {
         //Get all bets and Games
-        $bets = Bet::all();
+        $bets = Bet::where('ausgewertet', 0);
         //Remove unwanted bets
         $id = 0;
         foreach ($bets as $bet) {
@@ -55,14 +55,6 @@ class evaluateBets extends Command
             //remove bets where Games arent updated
             $gameDone = Game::find($bet->gameID);
             if ($gameDone->done != true) {
-                unset($bets[$id]);
-            }
-            $id++;          
-        }
-        //Remove evaluated Bets
-        $id = 0;
-        foreach ($bets as $bet) {
-            if ($bet->ausgewertet == true) {
                 unset($bets[$id]);
             }
             $id++;          
@@ -116,27 +108,32 @@ class evaluateBets extends Command
 
             $user = User::find($bet->userId);
             $user->Kontostand = $credits;
-            // $user->save();
+            $user->save();
 
             $bet->ausgewertet = true;
-            // $bet->save();
+            $bet->save();
             $evaluated++;
 
             $this->info(" UserId: ".$bet->userId);
 
-            $stats = DB::table('stats')->where('userId', $bet->userId)->get();
+            // $stats = DB::table('stats')->where('userId', $bet->userId)->get();
+            $stats = Stat::where('userId',$bet->userId)->first();
 
-            // if ($stat == "5Pkt") {
-            //     $stats->5Pkt = $stats->5Pkt + 1;
-            // }
-            if ($stat == "3Pkt") {
-                $Pkt = $stats->3Pkt + 1;
-                $this->info($Pkr);
-                #$stats->3Pkt = $Pkt;
+            if ($stat == "5Pkt") {
+                $Pkt = $stats->Pkt5 + 1;
+                $stats->Pkt5 = $Pkt;
+            } elseif ($stat == "3Pkt") {
+                $Pkt = $stats->Pkt3 + 1;
+                $stats->Pkt3 = $Pkt;
+            } elseif ($stat == "2Pkt") {
+                $Pkt = $stats->Pkt2 + 1;
+                $stats->Pkt2 = $Pkt;
+            } else {
+                $Pkt = $stats->Loose + 1;
+                $stats->Loose = $Pkt;
             }
-
-            // $stats->$stat = $stats->$stat++;
-            // $stats->save();
+            $this->info(" Pkt: ".$Pkt);
+            $stats->save();
         }
         $this->info(" Evaluated: ".$evaluated);
     }
