@@ -10,7 +10,11 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\ActivationService;
 use Session;
+<<<<<<< HEAD
 use App\Stat;
+=======
+use Stat;
+>>>>>>> 32f3d92bd0b0394b183590131d8a042f09e79db6
 
 class AuthController extends Controller
 {

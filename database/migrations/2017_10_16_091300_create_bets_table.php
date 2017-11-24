@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWettenTable extends Migration
+class CreateBetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,15 @@ class CreateWettenTable extends Migration
      */
     public function up()
     {
-        Schema::create('wetten', function (Blueprint $table) {
+        Schema::create('bets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userId');
+            $table->integer('gameID');
             $table->integer('Betrag');
             $table->integer('HP');
             $table->integer('GP');
+            $table->boolean('ausgewertet');
+            $table->dateTime('spielTag');
             $table->timestamps();
         });
     }
