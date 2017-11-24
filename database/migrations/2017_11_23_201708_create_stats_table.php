@@ -16,9 +16,9 @@ class CreateStatsTable extends Migration
             $table->increments('id');
             $table->integer('userId');
             $table->integer('Loose');
-            $table->integer('2Pkt');
-            $table->integer('3Pkt');
-            $table->integer('5Pkt');        
+            $table->integer('Pkt2');
+            $table->integer('Pkt3');
+            $table->integer('Pkt5');        
             $table->timestamps();
         });
     }

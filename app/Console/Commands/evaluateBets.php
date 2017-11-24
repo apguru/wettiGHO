@@ -126,17 +126,21 @@ class evaluateBets extends Command
 
             $stats = DB::table('stats')->where('userId', $bet->userId)->get();
 
-            // if ($stat == "5Pkt") {
-            //     $stats->5Pkt = $stats->5Pkt + 1;
-            // }
-            if ($stat == "3Pkt") {
-                $Pkt = $stats->3Pkt + 1;
-                $this->info($Pkr);
-                #$stats->3Pkt = $Pkt;
+            if ($stat == "5Pkt") {
+                $Pkt = $stats->Pkt5 + 1;
+                $stats->Pkt5 = $Pkt;
+            } elseif ($stat == "3Pkt") {
+                $Pkt = $stats->Pkt3 + 1;
+                $stats->Pkt3 = $Pkt;
+            } elseif ($stat == "2Pkt") {
+                $Pkt = $stats->Pkt2 + 1;
+                $stats->Pkt2 = $Pkt;
+            } else{
+                $Pkt = $stats->Loose + 1;
+                $stats->Loose = $Pkt;
             }
-
-            // $stats->$stat = $stats->$stat++;
-            // $stats->save();
+            
+            $stats->save();
         }
         $this->info(" Evaluated: ".$evaluated);
     }
