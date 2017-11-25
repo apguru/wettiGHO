@@ -39,7 +39,7 @@ class updateGames extends Command
     public function handle()
     {
         //Get all Games
-        $games = Game::all();
+        $games = Game::where("done", 0)->get();
 
         //Remove not played Games
         $id = 0;
@@ -50,6 +50,7 @@ class updateGames extends Command
             }
             $id++;          
         }
+        $this->info(count($games));
         foreach ($games as $game) {
             $context  = stream_context_create(array('http' => array('header' => 'Accept: application/xml')));
             $url = "https://www.openligadb.de/api/getmatchdata/".$game->matchId;

@@ -23,7 +23,7 @@ class evaluateBets extends Command
      *
      * @var string
      */
-    protected $description = 'Evaluates the bets of all Users';
+    protected $description = 'Evaluates all bet ';
 
     /**
      * Create a new command instance.
@@ -60,51 +60,42 @@ class evaluateBets extends Command
             $id++;          
         }
         //Evaluate bet
-        $evaluated = 0;
         foreach ($bets as $bet) {
-            $betHp = $bet->HP;
-            $betGp = $bet->GP;
-            $betWinner = "";
+            //$betWinner = "";
 
-            if ($betHp > $betGp) {
+            if ($bet->HP > $bet->GP) {
                 $betWinner = "Heim";
-            } elseif ($betHp < $betGp) {
+            } elseif ($bet->HP < $bet->G) {
                 $betWinner = "Gast";
-            } elseif ($betHp == $betGp){
+            } elseif ($bet->HP == $bet->G){
                 $betWinner = "Tie";
             }
 
             $game = Game::find($bet->gameID);
-            $gameHp = $game->hp;
-            $gameGp = $game->gp;
-            $gameWinner = "";
+            // $gameWinner = "";
 
-            if ($gameHp > $gameGp) {
+            if ($game->hp > $game->gp) {
                 $gameWinner = "Heim";
-            } elseif ($gameHp < $gameGp) {
+            } elseif ($game->hp < $game->gp) {
                 $gameWinner = "Gast";
-            } elseif ($gameHp == $gameGp){
+            } elseif ($game->hp == $game->gp){
                 $gameWinner = "Tie";
             }
 
             $user = User::find($bet->userId);
-            $credits = $user->Kontostand;
 
-            $stat = "";
             if (($betHp == $gameHp) && ($betGp = $gameGp)) {
-                $credits = $credits + $bet->Betrag*5;
+                $credits = $user->Kontostand + $bet->Betrag*5;
                 $stat = "5Pkt";
             } elseif(($betHp - $betGp) == ($gameHp - $gameGp)) {
-                $credits = $credits + $bet->Betrag*3;
+                $credits = $user->Kontostand + $bet->Betrag*3;
                 $stat = "3Pkt";
             } elseif($betWinner == $gameWinner){
-                $credits = $credits + $bet->Betrag*2;
+                $credits = $user->Kontostand + $bet->Betrag*2;
                 $stat = "2Pkt";
             } else {
                 $stat = "Loose";
             }
-
-            $this->info(" Stat: ".$stat);
 
             $user = User::find($bet->userId);
             $user->Kontostand = $credits;
@@ -112,11 +103,7 @@ class evaluateBets extends Command
 
             $bet->ausgewertet = true;
             $bet->save();
-            $evaluated++;
 
-            $this->info(" UserId: ".$bet->userId);
-
-            // $stats = DB::table('stats')->where('userId', $bet->userId)->get();
             $stats = Stat::where('userId',$bet->userId)->first();
 
             if ($stat == "5Pkt") {
@@ -132,10 +119,8 @@ class evaluateBets extends Command
                 $Pkt = $stats->Loose + 1;
                 $stats->Loose = $Pkt;
             }
-            $this->info(" Pkt: ".$Pkt);
             $stats->save();
         }
-        $this->info(" Evaluated: ".$evaluated);
     }
 }
 

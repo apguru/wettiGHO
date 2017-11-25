@@ -10,11 +10,7 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 use App\ActivationService;
 use Session;
-<<<<<<< HEAD
 use App\Stat;
-=======
-use Stat;
->>>>>>> 32f3d92bd0b0394b183590131d8a042f09e79db6
 
 class AuthController extends Controller
 {
@@ -84,6 +80,7 @@ class AuthController extends Controller
     {
     if ($user = $this->activationService->activateUser($token)) {
         auth()->login($user);
+        Session::flash('success', 'Du wurdest erfolgreich verifiziert. Du wurdest eingeloggt.');
         return redirect($this->redirectPath());
     }
     abort(404);

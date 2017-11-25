@@ -12,7 +12,8 @@
 			<div class="well panelBody">
 				<div class="row">
 					<p class="lead text-center"><strong>{{ $game->heim}}</strong> gegen <strong>{{ $game->gast }}</strong></p>
-					<form method="POST", action="{{ route('bet.store') }}">
+					<p class="text-center">am: <strong>{{ date('j. M Y', strtotime($game->spielTag)) }}</strong> um <strong>{{ date('G:i', strtotime($game->spielTag)) }}</strong> Uhr</p>
+					<form method="POST" action="{{ route('bet.store') }}" data-parsley-validate>
 						{{ csrf_field() }}
 						{{ Form::hidden('gameID', $game->id) }}
 						<div class="col-md-6">
@@ -27,7 +28,7 @@
 												<label for="heim">Tore:</label>
 											</div>
 											<div class="col-md-9 col-md-offset-1">
-												<input name="heim" type="text" class="form-control">
+												<input name="heim" id="heim" type="text" class="form-control" data-parsley-required data-parsley-min=0  data-parsley-type="integer">
 											</div>
 										</div>
 									</div>
@@ -46,7 +47,7 @@
 												<label for="gast">Tore:</label>
 											</div>
 											<div class="col-md-9 col-md-offset-1">
-												<input name="gast" type="text" class="form-control">
+												<input name="gast" id="gast" type="text" class="form-control" data-parsley-required data-parsley-min=0  data-parsley-type="integer">
 											</div>
 										</div>
 									</div>
@@ -60,7 +61,7 @@
 						</div>
 						<div class="col-md-6 col-md-offset-3">
 							<label for="credits">Credits</label>
-							<input name="credits"type="text" class="form-control" placeholder="Max: {{ Auth::user()->Kontostand }}">
+							<input name="credits" type="text" id="credits" class="form-control" placeholder="Max: {{ Auth::user()->Kontostand }}"data-parsley-required data-parsley-max={{ Auth::user()->Kontostand }} data-parsley-min=0 data-parsley-type="integer" >
 						</div>
 						<div class="col-md-4 col-md-offset-4">
 							<center>
@@ -72,4 +73,10 @@
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('scripts')
+<script>
+ $('#credits').parsley(required, type="number", min=0, max={{ Auth::user()->Kontostand }});
+</script>
 @endsection
