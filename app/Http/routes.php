@@ -44,4 +44,7 @@ Route::group(array('before' => 'auth'), function(){
 
     //Pages
     Route::get('/user/data', ['as'=>'user.data', 'uses'=>'PagesController@getUserData'])->middleware('auth');
+
+    //Statistics
+    Route::get('/stats/show', ['as'=>'stats.show', 'uses'=>'StatController@getShow'])->middleware ('auth');
 });
