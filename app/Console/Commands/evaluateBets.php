@@ -43,10 +43,14 @@ class evaluateBets extends Command
     public function handle()
     {
         //Get all bets and Games
-        $bets = Bet::where('ausgewertet', 0);
+        $bets = Bet::all();
         //Remove unwanted bets
         $id = 0;
         foreach ($bets as $bet) {
+            $ausgewertet = $bet->ausgewertet;
+            if ($ausgewertet != 0) {
+                unset($bets[$id]);
+            }
             //Remove Bets where Games aren't played
             $time = strtotime($bet->spielTag) + 70000;
             if (strtotime('now') < $time) {
@@ -61,7 +65,6 @@ class evaluateBets extends Command
         }
         //Evaluate bet
         foreach ($bets as $bet) {
-            //$betWinner = "";
 
             if ($bet->HP > $bet->GP) {
                 $betWinner = "Heim";
@@ -72,7 +75,6 @@ class evaluateBets extends Command
             }
 
             $game = Game::find($bet->gameID);
-            // $gameWinner = "";
 
             if ($game->hp > $game->gp) {
                 $gameWinner = "Heim";
@@ -82,12 +84,13 @@ class evaluateBets extends Command
                 $gameWinner = "Tie";
             }
 
-            $user = User::find($bet->userId);
 
-            if (($betHp == $gameHp) && ($betGp = $gameGp)) {
+            $user = User::find($bet->userId)->first();
+
+            if (($bet->HP == $game->hp) && ($bet->GP = $game->gp)) {
                 $credits = $user->Kontostand + $bet->Betrag*5;
                 $stat = "5Pkt";
-            } elseif(($betHp - $betGp) == ($gameHp - $gameGp)) {
+            } elseif(($bet->HP - $bet->GP) == ($game->hp - $game->gp)) {
                 $credits = $user->Kontostand + $bet->Betrag*3;
                 $stat = "3Pkt";
             } elseif($betWinner == $gameWinner){
@@ -97,7 +100,7 @@ class evaluateBets extends Command
                 $stat = "Loose";
             }
 
-            $user = User::find($bet->userId);
+            $user = User::find($bet->userId)->first();
             $user->Kontostand = $credits;
             $user->save();
 
@@ -120,6 +123,7 @@ class evaluateBets extends Command
                 $stats->Loose = $Pkt;
             }
             $stats->save();
+
         }
     }
 }

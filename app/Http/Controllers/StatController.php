@@ -21,7 +21,6 @@ class StatController extends Controller
   {
     $stats = DB::table('stats')->where('userid', Auth::user()->id)->first();
     $bets = Bet::where('userId', Auth::user()->id)->count();
-    echo Auth::user()->id;
 
     return view('stats.show')->withStats($stats)->withBets($bets);
 
@@ -35,7 +34,6 @@ class StatController extends Controller
                 ->orderBy('users.Kontostand','desc')
                 ->paginate(10);
 
-    echo count($data);
     return view('stats.leaderboard')->withData($data);
   }
 }

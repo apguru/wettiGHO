@@ -50,7 +50,6 @@ class updateGames extends Command
             }
             $id++;          
         }
-        $this->info(count($games));
         foreach ($games as $game) {
             $context  = stream_context_create(array('http' => array('header' => 'Accept: application/xml')));
             $url = "https://www.openligadb.de/api/getmatchdata/".$game->matchId;

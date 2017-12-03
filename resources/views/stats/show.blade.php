@@ -16,7 +16,7 @@
       				</dl>
               <dl class="dl-horizontal">
       					<dt>Rate:</dt>
-      					<dd>{{  (($stats->Pkt5) + ($stats->Pkt3) + ($stats->Pkt2)) / ($stats->Loose)}}</dd>
+      					<dd>{{ ($stats->Loose > 0 ? ((($stats->Pkt5) + ($stats->Pkt3) + ($stats->Pkt2)) / $stats->Loose) : (($stats->Pkt5) + ($stats->Pkt3) + ($stats->Pkt2)))}}</dd>
       				</dl>
               <dl class="dl-horizontal">
       					<dt>Verlorene Wetten:</dt>

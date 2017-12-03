@@ -20,15 +20,15 @@
   			<tbody>
   				@foreach($data as $dataElement)
   					<tr>
-						<td>{{ $dataElement->bName }}</td>
-						<td>{{ ($dataElement->Pkt5) + ($dataElement->Pkt3) + ($dataElement->Pkt2) }}</td>
-						<td>{{ $dataElement->Pkt5 }}</td>
-						<td>{{ $dataElement->Pkt3 }}</td>
-						<td>{{ $dataElement->Pkt2 }}</td>
-						<td>{{ $dataElement->Loose }}</td>
-						<td>{{ (($dataElement->Pkt5) + ($dataElement->Pkt3) + ($dataElement->Pkt2)) / $dataElement->Loose }}</td>
-						<td>{{ $dataElement->Kontostand }}</td>
-					</tr>
+  						<td class="leaderBoard">{{ $dataElement->bName }}</td>
+  						<td class="leaderBoard">{{ ($dataElement->Pkt5) + ($dataElement->Pkt3) + ($dataElement->Pkt2) }}</td>
+  						<td class="leaderBoard">{{ $dataElement->Pkt5 }}</td>
+  						<td class="leaderBoard">{{ $dataElement->Pkt3 }}</td>
+  						<td class="leaderBoard">{{ $dataElement->Pkt2 }}</td>
+  						<td class="leaderBoard">{{ $dataElement->Loose }}</td>
+  						<td class="leaderBoard">{{ ($dataElement->Loose > 0 ? ((($dataElement->Pkt5) + ($dataElement->Pkt3) + ($dataElement->Pkt2)) / $dataElement->Loose) : (($dataElement->Pkt5) + ($dataElement->Pkt3) + ($dataElement->Pkt2))) }}</td>
+  						<td class="leaderBoard">{{ $dataElement->Kontostand }}</td>
+					  </tr>
   				@endforeach
   			</tbody>
    		</table>
