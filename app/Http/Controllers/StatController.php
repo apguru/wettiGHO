@@ -26,4 +26,16 @@ class StatController extends Controller
     return view('stats.show')->withStats($stats)->withBets($bets);
 
   }
+
+  public function getLeaderboard()
+  {
+    $data = DB::table('users')
+                ->join('stats', 'users.id', "=", 'stats.userId' )
+                ->select("stats.*", 'users.bName', 'users.Kontostand')
+                ->orderBy('users.Kontostand','desc')
+                ->paginate(10);
+
+    echo count($data);
+    return view('stats.leaderboard')->withData($data);
+  }
 }

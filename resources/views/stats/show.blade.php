@@ -11,7 +11,7 @@
       </div>
       <div class="well panelBody text-center">
               <dl class="dl-horizontal">
-      					<dt>Platzierze Wetten:</dt>
+      					<dt>Platzierte Wetten:</dt>
       					<dd>{{ $bets }}</dd>
       				</dl>
               <dl class="dl-horizontal">

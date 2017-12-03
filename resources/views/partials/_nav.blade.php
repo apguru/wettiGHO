@@ -19,12 +19,19 @@
         <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ route('bet.index') }}">Meine Wetten</a></li>
-            <li><a href="{{ route('spiele') }}">Wette platzieren</a></li>
-          </ul>
-        </li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ route('bet.index') }}">Meine Wetten</a></li>
+              <li><a href="{{ route('spiele') }}">Wette platzieren</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistiken<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ route('stats.show') }}">Meine Statistiken</a></li>
+              <li><a href="{{ route('stats.leaderboard') }}">Bestenliste</a></li>
+            </ul>
+          </li>
         @endif
         <li class='{{ Request::is("contact") ? "active" : "" }}'><a href="{{ route('pages.contact') }}"><i class="fa fa-address-card-o fa-fw" aria-hidden="true"></i> Contact</a></li>
       </ul>
