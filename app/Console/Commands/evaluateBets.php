@@ -36,9 +36,69 @@ class evaluateBets extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * @param  Bet-object 
+     * @return string
+     */
+    public function getBetWinner ($bet)
+    {
+        if ($bet->HP > $bet->GP) {
+            $betWinner = "Heim";
+        } elseif ($bet->HP < $bet->G) {
+            $betWinner = "Gast";
+        } elseif ($bet->HP == $bet->G){
+            $betWinner = "Tie";
+        }
+
+        return $betWinner;
+    }
+
+    /**
+     * @param  Game-object
+     * @return string
+     */
+    public function getGameWinner ($game)
+    {
+        if ($game->hp > $game->gp) {
+            $gameWinner = "Heim";
+        } elseif ($game->hp < $game->gp) {
+            $gameWinner = "Gast";
+        } elseif ($game->hp == $game->gp){
+            $gameWinner = "Tie";
+        }
+
+        return $gameWinner;
+    }
+    /**
+     * @param  Game-object $game
+     * @param  Bet-object $bet
+     * @return array 
+     */
+    public function calcCredits ($game, $bet)
+    {
+        $betWinner = $this->getBetWinner($bet);
+        $gameWinner = $this->getGameWinner($game);
+        $user = User::find($bet->userId)->first();
+
+        if (($bet->HP == $game->hp) && ($bet->GP = $game->gp)) {
+            $credits = $user->Kontostand + $bet->Betrag*5;
+            $stat = "5Pkt";
+        } elseif(($bet->HP - $bet->GP) == ($game->hp - $game->gp)) {
+            $credits = $user->Kontostand + $bet->Betrag*3;
+            $stat = "3Pkt";
+        } elseif($betWinner == $gameWinner){
+            $credits = $user->Kontostand + $bet->Betrag*2;
+            $stat = "2Pkt";
+        } else {
+            $credits = $user->Kontostand;
+            $stat = "Loose";
+        }
+
+        $data = ['stat'=>$stat, 'credits'=>$credits];
+
+        return $data;
+    }
+    /**
+     * @return none
      */
     public function handle()
     {
@@ -64,50 +124,19 @@ class evaluateBets extends Command
             $id++;          
         }
         //Evaluate bet
-        foreach ($bets as $bet) {
-
-            if ($bet->HP > $bet->GP) {
-                $betWinner = "Heim";
-            } elseif ($bet->HP < $bet->G) {
-                $betWinner = "Gast";
-            } elseif ($bet->HP == $bet->G){
-                $betWinner = "Tie";
-            }
-
+        foreach ($bets as $bet) {   
             $game = Game::find($bet->gameID);
-
-            if ($game->hp > $game->gp) {
-                $gameWinner = "Heim";
-            } elseif ($game->hp < $game->gp) {
-                $gameWinner = "Gast";
-            } elseif ($game->hp == $game->gp){
-                $gameWinner = "Tie";
-            }
-
-
             $user = User::find($bet->userId)->first();
+            $data = $this->calcCredits($game, $bet);
 
-            if (($bet->HP == $game->hp) && ($bet->GP = $game->gp)) {
-                $credits = $user->Kontostand + $bet->Betrag*5;
-                $stat = "5Pkt";
-            } elseif(($bet->HP - $bet->GP) == ($game->hp - $game->gp)) {
-                $credits = $user->Kontostand + $bet->Betrag*3;
-                $stat = "3Pkt";
-            } elseif($betWinner == $gameWinner){
-                $credits = $user->Kontostand + $bet->Betrag*2;
-                $stat = "2Pkt";
-            } else {
-                $stat = "Loose";
-            }
-
-            $user = User::find($bet->userId)->first();
-            $user->Kontostand = $credits;
+            $user->Kontostand = $data['credits'];
             $user->save();
 
             $bet->ausgewertet = true;
             $bet->save();
 
             $stats = Stat::where('userId',$bet->userId)->first();
+            $stat = $data['stat'];
 
             if ($stat == "5Pkt") {
                 $Pkt = $stats->Pkt5 + 1;
@@ -122,8 +151,8 @@ class evaluateBets extends Command
                 $Pkt = $stats->Loose + 1;
                 $stats->Loose = $Pkt;
             }
-            $stats->save();
 
+            $stats->save();
         }
     }
 }

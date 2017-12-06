@@ -30,10 +30,16 @@ class StatController extends Controller
   {
     $data = DB::table('users')
                 ->join('stats', 'users.id', "=", 'stats.userId' )
-                ->select("stats.*", 'users.bName', 'users.Kontostand')
+                ->select("stats.*", 'users.bName', 'users.Kontostand','users.activated')
                 ->orderBy('users.Kontostand','desc')
                 ->paginate(10);
+    for ($i=0; $i < count($data); $i++) { 
+      if ($data[$i]->activated == false) {
+        unset($data[$i]);
+      }
+    }
 
     return view('stats.leaderboard')->withData($data);
   }
 }
+;

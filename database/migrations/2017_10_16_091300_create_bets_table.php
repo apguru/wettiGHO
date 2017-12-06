@@ -32,6 +32,6 @@ class CreateBetsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('wetten');
+        Schema::drop('bets');
     }
 }

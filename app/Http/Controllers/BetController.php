@@ -92,7 +92,7 @@ class BetController extends Controller
         $this->validate($request,[
             'heim' => 'required|integer|min:0',
             'gast' => 'required|integer|min:0',
-            'credits'=>'required|integer|min:|max:'.Auth::user()->Kontostand,
+            'credits'=>'required|integer|min:0|max:'.Auth::user()->Kontostand,
         ]);
         //Create New Bet
         $game = Game::find($request->gameID);
