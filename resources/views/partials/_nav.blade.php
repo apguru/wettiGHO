@@ -18,18 +18,18 @@
         <li></li>
         <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
-          <li class="dropdown">
+          <li class="dropdown {{ Request::is("bet") ? "active" : "" }}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{{ route('bet.index') }}">Meine Wetten</a></li>
-              <li><a href="{{ route('spiele') }}">Wette platzieren</a></li>
+              <li class="{{ Request::is("bet") ? "active" : "" }}" ><a href="{{ route('bet.index') }}">Meine Wetten</a></li>
+              <li class="{{ Request::is("spiele") ? "active" : "" }}"><a href="{{ route('spiele') }}">Wette platzieren</a></li>
             </ul>
           </li>
-          <li class="dropdown">
+          <li class="dropdown {{ Request::is("stats/*") ? "active" : "" }}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Statistiken<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="{{ route('stats.show') }}">Meine Statistiken</a></li>
-              <li><a href="{{ route('stats.leaderboard') }}">Bestenliste</a></li>
+              <li class='{{ Request::is("stats/show") ? "active" : "" }}'><a href="{{ route('stats.show') }}">Meine Statistiken</a></li>
+              <li class='{{ Request::is("stats/leaderboard") ? "active" : "" }}'><a href="{{ route('stats.leaderboard') }}">Bestenliste</a></li>
             </ul>
           </li>
         @endif
@@ -38,10 +38,10 @@
       @if (Auth::check())
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Kontostand: {{ Auth::user()->Kontostand }} <i class="fa fa-money" aria-hidden="true"></i></p></li>
-        <li class="dropdown">
+        <li class="dropdown {{ Request::is("user/data") ? "active" : "" }}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Hello {{ Auth::check()? Auth::user()->Vorname : User }} <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('user.data') }}"> <i class="fa fa-id-card fa-fw" aria-hidden="true"></i> Benutzerdaten</a></li>
+            <li class='{{ Request::is("user/data") ? "active" : "" }}'><a href="{{ route('user.data') }}"> <i class="fa fa-id-card fa-fw" aria-hidden="true"></i> Benutzerdaten</a></li>
             <li role="seperator" class="divider"></li>
             <li><a href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
           </ul>
@@ -49,11 +49,11 @@
       </ul>
       @else
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="dropdown {{ Request::is("auth/*") ? "active" : "" }}">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-fw"></i>User<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
-            <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+            <li class='{{ Request::is("auth/login") ? "active" : "" }}'><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a></li>
+            <li class='{{ Request::is("auth/register") ? "active" : "" }}'><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
           </ul>
         </li>
       </ul>
