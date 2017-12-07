@@ -14,3 +14,15 @@ crossorigin="anonymous"></script>
 {{ Html::script('js/parsley/parsley.min.js') }}
 {{ Html::script('js/parsley/i18n/de.js') }}
 {{ Html::script('js/parsley/i18n/de.extra.js') }}
+
+<script>
+	// Add slideDown animation to Bootstrap dropdown when expanding.
+  $('.dropdown').on('show.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
+  });
+
+  // Add slideUp animation to Bootstrap dropdown when collapsing.
+  $('.dropdown').on('hide.bs.dropdown', function() {
+    $(this).find('.dropdown-menu').first().stop(true, true).slideUp();
+  });
+</script>

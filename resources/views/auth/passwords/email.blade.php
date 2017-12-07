@@ -6,11 +6,6 @@
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3">
 			<br>
-		  	@if (session('status'))
-		  		<div class="alert alert-success">
-		  			{{ session('status') }}
-		  		</div>
-		  	@endif
 		  	<div class="well panelHead">
 		  		<h1 class="text-center">Passwort zurücksetzten</h1>
 		  	</div>

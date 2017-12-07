@@ -22,6 +22,11 @@
         <hr>
         <p class="lead">Um unser Programm nutzen zu können müssen sie sich eine koszenloses Konto erstellen, im anschluss erhalten sie kompletten Zugriff auf die Funktionen unsers Programmes</p>
         <p class="lead">Ein neuer Benutzer erhält zum Start 100 Creditpunkte die er nach belieben investieren kann.</p>
+
+        @if(! Auth::check())
+        <h3>Interresse Geweckt? Gleich hier Registrieren:</h3>
+        <a href="{{ route('register') }}" class="btn btn-lg btn-primary btn-block welcomeBtn">Loslegen</a>
+        @endif
         
       </div><!-- well -->
     </div><!-- col-md-12 -->

@@ -23,11 +23,10 @@
           {{ Form::checkbox('remember') }}
           Eingeloggt bleiben
       	</label>
-      	{{ Form::submit('Login', ['class' => 'btn btn-success btn-block formBtnSpacing']) }}
-
         <h5><a href="{{ url('password/reset') }}">Passwort vergessen?</a></h5>
-          
+      	{{ Form::submit('Login', ['class' => 'btn btn-success btn-block formBtnSpacing']) }}          
         {{ Form::close() }}
+        <h5><a href="{{ route('register') }}">Noch kein Konto? Hier Registrieren</a></h5>
       </div>
     </div>
   </div>

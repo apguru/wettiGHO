@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -18,7 +18,7 @@
         <li></li>
         <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
-          <li class="dropdown {{ Request::is("bet/*") ? "active" : "" }} {{ Request::is("bet") ? "active" : "" }} {{ Request::is("spiele") ? "active" : "" }}">
+          <li class="dropdown {{ Request::is("bet/*") ? "active" : "" }} {{ Request::is("bet*/") ? "active" : "" }} {{ Request::is("spiele") ? "active" : "" }}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="{{ Request::is("bet") ? "active" : "" }}" ><a href="{{ route('bet.index') }}">Meine Wetten</a></li>

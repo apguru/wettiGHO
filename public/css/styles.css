@@ -1,5 +1,6 @@
 body{
 	font-family: 'Open Sans', sans-serif;
+	margin-top: 51px;
 }
 .formBtnSpacing{
     margin-top: 17px;
@@ -43,4 +44,8 @@ body{
 }
 td .leaderBoard{
 	text-align: center;
+}
+
+.welcomeBtn{
+	margin-top: 30px;
 }
