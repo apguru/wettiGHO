@@ -41,6 +41,8 @@
         		{{ Form::submit('Registrieren', ['class' => 'btn btn-primary btn-block']) }}
 
         	{!! Form::close() !!}
+
+            <h5><a href="{{ route('login') }}">Bereits Registriert? Hier anmelden!</a></h5>
             </div>
         </div><!-- col-md-6 -->
     </div><!-- row -->

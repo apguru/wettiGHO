@@ -40,7 +40,9 @@ Route::group(array('before' => 'auth'), function(){
     //Spiele
     Route::get('/spiele', ['as' => 'spiele', 'uses'=>'GameController@getIndex']);
     Route::get('/spiele/create', 'GameController@create');
+    Route::get('/spiele/Leagues', ['as'=>'games.Leagues', 'uses'=>'GameController@getLeagueSelect']);
     Route::post('/spiele', ['as'=>'spiele.store', 'uses'=>'GameController@store']);
+    Route::get('/spiele/{League}', ['as' => 'spiele.league', 'uses'=>'GameController@getIndexOfLeague']);
 
     //Pages
     Route::get('/user/data', ['as'=>'user.data', 'uses'=>'PagesController@getUserData'])->middleware('auth');

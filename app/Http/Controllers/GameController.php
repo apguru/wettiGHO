@@ -11,6 +11,7 @@ use App\Http\Controllers\BetController;
 use Carbon\Carbon;
 use Session;
 use DB;
+use App\League;
 use Auth;
 use Parser;
 use XmlParser;
@@ -21,14 +22,31 @@ class GameController extends Controller
         $this->middleware('auth');
     }
     
-    public function getIndex(){
-        //Get all Games orderd by `spieltag`
-        $time = Carbon::now();
-        $games = Game::orderBy('spielTag','asc')->where('spielTag', '>', $time)->paginate(10);
+    public function getLeagueSelect(){
+
+        // $games = Game::all('spielTag','asc')->where('spielTag', '>', $time)->paginate(10);
+        $leagues = League::all();
     	// $games = DB::table('games')->where('spielTag', '>', $time)->orderBy('spielTag','asc')->paginate(10);
 
         //return view game.index with all game & game data
-    	return view('games.index')->withGames($games);
+    	return view('games.leaguesSelect')->withLeagues($leagues);
+    }
+    public function getIndexOfLeague($league)
+    {
+        $time = Carbon::now();
+
+        // $games = Game::where('leagueId', $league)->paginate(10);
+        $games = DB::table('games')
+                    ->join('leagues','games.leagueId', '=', 'leagues.id')
+                    ->select('games.*', 'leagues.name')
+                    ->where([
+                        ['games.leagueId', '=', $league],
+                        ['spielTag', '>', $time],
+                    ])->orderBy('spielTag','asc')
+                    ->paginate(10);
+        $league = DB::table('leagues')->select('name')->where('id', '=', $league)->first();
+
+        return view('games.index')->withGames($games)->withLeague($league);
     }
 
     public function create(){

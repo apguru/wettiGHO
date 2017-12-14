@@ -8,21 +8,22 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{ Html::image('logo48.png', '', ['id'=>'navLogo']) }}
+      <a class="navbar-brand" href="/">
+        {{ Html::image('logo48.png', '', ['id'=>'navLogo']) }}
+        WettiGHO
+      </a>
     </div> <!-- /.container -->
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a class="navbar-brand" href="/">WettiGHO</a></li>
-        <li></li>
         <li class='{{ Request::is("/") ? "active" : "" }}'><a href="{{ route('pages.welcome')}}"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a></li>
         @if (Auth::check())
           <li class="dropdown {{ Request::is("bet/*") ? "active" : "" }} {{ Request::is("bet*/") ? "active" : "" }} {{ Request::is("spiele") ? "active" : "" }}">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Wetten<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li class="{{ Request::is("bet") ? "active" : "" }}" ><a href="{{ route('bet.index') }}">Meine Wetten</a></li>
-              <li class="{{ Request::is("spiele") ? "active" : "" }}"><a href="{{ route('spiele') }}">Wette platzieren</a></li>
+              <li class="{{ Request::is("spiele") ? "active" : "" }}"><a href="{{ route('games.Leagues') }}">Wette platzieren</a></li>
             </ul>
           </li>
           <li class="dropdown {{ Request::is("stats/*") ? "active" : "" }}">

@@ -6,7 +6,7 @@
   <div class="row">
       <div class="col-md-10 col-md-offset-1">
           <h1>Spiele</h1>
-          <h4>1. Bundesliga 2017/2018</h4>
+          <h4>{{ $league->name }}</h4>
       <table class="table">
         <thead>
           <th>Heim</th>
@@ -21,7 +21,7 @@
               <th> {{ $game->heim }} </th>
               <th> {{ $game->gast }}</th>
               <th> {{ date('D, j. M Y G:i', strtotime($game->spielTag)) }} </th>
-              <th><a href='{{ route('bet.betCreate', $game) }}' class="btn btn-success">Wetten</a></th>
+              <th><a href='{{ route('bet.betCreate', $game->id) }}' class="btn btn-success">Wetten</a></th>
             </tr>
           @endforeach
         </tbody>

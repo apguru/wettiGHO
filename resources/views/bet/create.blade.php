@@ -54,29 +54,25 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-12">
 							<hr>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
 							<label for="credits">Credits</label>
-							<input name="credits" type="text" id="credits" class="form-control" placeholder="Max: {{ Auth::user()->Kontostand }}"data-parsley-required data-parsley-max={{ Auth::user()->Kontostand }} data-parsley-min=0 data-parsley-type="integer" >
+							<input name="credits" type="text" id="credits" class="form-control" placeholder="Max: {{ Auth::user()->Kontostand }}"
+							data-parsley-required data-parsley-min=0 data-parsley-max={{ Auth::user()->Kontostand }} data-parsley-type="integer" >
 						</div>
 						<div class="col-md-4 col-md-offset-4">
 							<center>
 								<input type="submit" class="btn btn-success btn-block formBtnSpacing" value="Wette plazieren">
 							</center>
 						</div>
-					</div>
-				</form>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 @endsection
 
 @section('scripts')
-<script>
- $('#credits').parsley(required, type="number", min=0, max={{ Auth::user()->Kontostand }});
-</script>
 @endsection

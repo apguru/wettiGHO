@@ -40,7 +40,10 @@ body{
 
 #navLogo{
 	margin-right: 10px;
-	display: block;
+	float: left;
+}
+.navbar-brand img{
+	margin-top: -13px;
 }
 td .leaderBoard{
 	text-align: center;
